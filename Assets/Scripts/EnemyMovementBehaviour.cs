@@ -32,8 +32,9 @@ public class EnemyMovementBehaviour : MonoBehaviour, IDamager
 
     void Start()
     {
-        _NavMeshAgent = GetComponent<NavMeshAgent>();        
-        TargetTower = GameObject.FindGameObjectWithTag("PlayerTower").transform;
+        _NavMeshAgent = GetComponent<NavMeshAgent>();
+        _NavMeshAgent.stoppingDistance = DistanceToTrigger;
+        SearchForTarget();
         _NavMeshAgent.destination = TargetTower.position;        
         _NavMeshAgent.speed = MovementSpeed;
         StartCoroutine("Idle");
@@ -72,10 +73,7 @@ public class EnemyMovementBehaviour : MonoBehaviour, IDamager
     {
         if (TargetTower == null)
         {
-            //ToDo: need dylan to make this better
-            var targets = GameObject.FindGameObjectsWithTag("PlayerTower");
-            var targs = targets.OrderBy(x => Vector3.Distance(transform.position, x.transform.position));
-            TargetTower = targs.FirstOrDefault().transform;
+            SearchForTarget();
         }
 
         if (TargetTower.GetComponent<IDamageable>() == null || CurrentState != States.attack)
@@ -91,7 +89,19 @@ public class EnemyMovementBehaviour : MonoBehaviour, IDamager
         }
     }
 
-   
+    void SearchForTarget()
+    {
+        var validTargets = GameObject.FindGameObjectsWithTag("PlayerTower").ToList();
+        if (validTargets == null || validTargets.Count == 0)
+        {
+            TargetTower = null;
+            _NavMeshAgent.destination = this.transform.position;
+            return;
+        }
+        validTargets = validTargets.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).ToList();
+        TargetTower = validTargets[0].transform;
+    }
+
 
     IEnumerator Walk()
     {
