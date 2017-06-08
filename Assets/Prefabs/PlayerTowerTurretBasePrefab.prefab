@@ -9,47 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1210290805975880}
+  m_RootGameObject: {fileID: 1945650150821642}
   m_IsPrefabParent: 1
---- !u!1 &1210290805975880
+--- !u!1 &1945650150821642
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4977675376073720}
-  - component: {fileID: 33844567265608708}
-  - component: {fileID: 23087857047725722}
-  - component: {fileID: 95396612013224350}
-  - component: {fileID: 65572805758851036}
-  - component: {fileID: 114533103879119764}
-  m_Layer: 10
-  m_Name: SmallCylinderPrefab
-  m_TagString: PlayerTower
+  - component: {fileID: 4227966624146808}
+  - component: {fileID: 33220266557698034}
+  - component: {fileID: 23013870269154574}
+  - component: {fileID: 95086362191659028}
+  m_Layer: 0
+  m_Name: PlayerTowerTurretBaseMesh
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4977675376073720
+--- !u!4 &4227966624146808
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1210290805975880}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -112.9, y: -0.12, z: -98.86}
+  m_GameObject: {fileID: 1945650150821642}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.00060994294, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23087857047725722
+--- !u!23 &23013870269154574
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1210290805975880}
+  m_GameObject: {fileID: 1945650150821642}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -57,7 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 085430ae4fff41546a83fafff377057a, type: 2}
+  - {fileID: 2100000, guid: b4fc3c6c91a3d7b4194ed984d6052bf4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -76,34 +74,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33844567265608708
+--- !u!33 &33220266557698034
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1210290805975880}
-  m_Mesh: {fileID: 4300000, guid: 9763ebf54a7a7644d9f57ecde8820379, type: 3}
---- !u!65 &65572805758851036
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1210290805975880}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.91973, y: 3.5975742, z: 2.91973}
-  m_Center: {x: 0, y: 1.7907906, z: 0}
---- !u!95 &95396612013224350
+  m_GameObject: {fileID: 1945650150821642}
+  m_Mesh: {fileID: 4300000, guid: 97305be2c58643e498ebfff40d6c0618, type: 3}
+--- !u!95 &95086362191659028
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1210290805975880}
+  m_GameObject: {fileID: 1945650150821642}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 9763ebf54a7a7644d9f57ecde8820379, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 97305be2c58643e498ebfff40d6c0618, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -112,17 +98,3 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114533103879119764
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1210290805975880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5db48c574ae1d864398dcf52a33c2577, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HealthStat: {fileID: 11400000, guid: 7d9dd6574c4e2c043a704d9423034bfe, type: 2}
-  deathParticles: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1,
-    type: 2}
