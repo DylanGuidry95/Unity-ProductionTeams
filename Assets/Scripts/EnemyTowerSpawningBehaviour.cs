@@ -48,19 +48,18 @@ public class EnemyTowerSpawningBehaviour : MonoBehaviour
         SpawnerConfig.Initialize();
         cooldown = SpawnerConfig.SpawnDelayInSeconds;
         transform.LookAt(GameObject.FindGameObjectWithTag("PlayerTower").transform);
+        animationBehaviour.HealthStat.Value = 0;
     }
 
     void Update()
     {
         if(spawning)
             return;
-
         if(timer >= SpawnerConfig.SpawnDelayInSeconds)
         {
             spawning = true;
             animationBehaviour.DoSpawn();
-        }
-
+        }        
         timer += Time.deltaTime;
     }
     
@@ -74,19 +73,42 @@ public class EnemyTowerSpawningBehaviour : MonoBehaviour
         
         if(TargetSpawn != null)
             SpawnOffsetFromRoot = TargetSpawn.transform.position - transform.position;
-        var newSpawn = SpawnerConfig.SpawnEnemy(transform.position + SpawnOffsetFromRoot);
-        enemiesSpawned.Add(newSpawn);
+        var newSpawn = SpawnerConfig.SpawnEnemy(transform.position + SpawnOffsetFromRoot);        
+        newSpawn.GetComponent<EnemyLarvaAnimationBehaviour>().OnDead.AddListener(OnEnemyDied);
+        AddToLarvaPool(newSpawn);        
         var randomSize = Random.Range(1f, 1.5f);
         newSpawn.transform.localScale *= randomSize;
         timer = 0;
         spawning = false;
-        if(EnemySpawnCount >= maxEnemies)
-            GetComponent<IDamageable>().TakeDamage(100);
+    }
+
+    void OnEnemyDied(IDamageable enemy)
+    {
+        foreach (var e in enemiesSpawned)
+        {
+            var idam = e.GetComponent<IDamageable>();
+            if (enemy == idam)
+            {
+                var deadEnemy = e.GetComponent<EnemyMovementBehaviour>();
+                animationBehaviour.TakeDamage(deadEnemy.EnemyStats.Items["larvaenemyhealth"].Value);
+            }
+        }
+    }
+
+    void AddToLarvaPool(GameObject larva)
+    {
+        if(larva.GetComponent<EnemyMovementBehaviour>() == null)
+            return;
+        else
+        {
+            var newlarva = larva.GetComponent<EnemyMovementBehaviour>();
+            enemiesSpawned.Add(larva);
+            animationBehaviour.HealthStat.Value += newlarva.EnemyStats.Items["larvaenemyhealth"].Value;
+        }
     }
 
 
 #if UNITY_EDITOR
-
     [Tooltip("Changes the color of the gizmo that is drawn to screen to represent the spawn position of the enemy")]
     [SerializeField]
     Color GizmoColor;
@@ -103,6 +125,5 @@ public class EnemyTowerSpawningBehaviour : MonoBehaviour
         else
             Gizmos.DrawCube(transform.position + SpawnOffsetFromRoot, new Vector3(1, 1, 1));
     }
-
 #endif
 }
