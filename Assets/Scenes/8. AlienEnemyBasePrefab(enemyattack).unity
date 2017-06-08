@@ -129,6 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1508bbe5c454034c8955bbbac8f7c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationAxis: 0
+  speed: 0.5
   theta: 0
 --- !u!1 &386577038
 GameObject:
@@ -232,18 +234,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44cd4a626cbf6e546bb73914e9bbadb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  targetOffset: {x: 0, y: 0, z: 0}
   distance: 50
   maxDistance: 200
   minDistance: 0.6
-  xSpeed: 200
-  ySpeed: 200
-  yMinLimit: -80
-  yMaxLimit: 80
-  zoomRate: 40
   panSpeed: 1
+  target: {fileID: 0}
+  targetOffset: {x: 0, y: 0, z: 0}
+  xSpeed: 200
+  yMaxLimit: 80
+  yMinLimit: -80
+  ySpeed: 200
   zoomDampening: 5
+  zoomRate: 40
 --- !u!114 &386577046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthStat: {fileID: 11400000, guid: 5ec8174a41dd6414393b7b6e980858e6, type: 2}
+  deathParticles: {fileID: 0}
 --- !u!1001 &912507240
 Prefab:
   m_ObjectHideFlags: 0
