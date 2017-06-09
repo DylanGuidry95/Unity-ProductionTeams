@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "", menuName = "Attack/Attack")]
-public class Attack : ScriptableObject, IDamager
+public class AttackScriptable : ScriptableObject, IDamager
 {
     public Stat AttackDamage;
     public Stat AttackDelay;

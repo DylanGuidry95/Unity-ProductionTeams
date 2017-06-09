@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "", menuName = "Attack/LarvaAttack")]
-public class LarvaEnemyAttack : Attack
+public class LarvaEnemyAttack : AttackScriptable
 {
     public override void DoAttack(GameObject target)
     {

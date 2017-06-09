@@ -4,7 +4,7 @@
 public class AttackBehaviour : MonoBehaviour
 {
     private TargetingBehaviour _TargetingBehaviour;
-    public Attack AttackConfig;
+    public AttackScriptable AttackConfig;
     public bool InAttackRange;
 
     void Awake()
