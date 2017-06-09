@@ -1,23 +1,43 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(TargetingBehaviour))]
-public class AttackBehaviour : MonoBehaviour, IDamager
+public class AttackBehaviour : MonoBehaviour
 {
     private TargetingBehaviour _TargetingBehaviour;
-    public Stat AttackDamage;
-    public Stat AttackDelay;
+    public Attack AttackConfig;
+    public bool InAttackRange;
+
+    void Awake()
+    {
+        var AttackRangeBehaviour = GetComponentInChildren<AttackRangeSearchBehavioour>();
+        AttackRangeBehaviour.OnEnterAttackRange.AddListener(IsTargetInRange);
+        AttackRangeBehaviour.OnExitedAttackRange.AddListener(IsTargetInRange);
+    }
+
+    void Start()
+    {
+        AttackConfig = Instantiate(AttackConfig);
+        AttackConfig.Initialize(gameObject);
+        _TargetingBehaviour = GetComponent<TargetingBehaviour>();
+    }
 
     [SerializeField] private float AttackTimer;
 
-    public void DoDamage(IDamageable target)
+    void IsTargetInRange(GameObject other)
     {
-        target.TakeDamage(AttackDamage.Value);
+        if (other == _TargetingBehaviour.Target)
+            InAttackRange = !InAttackRange;
     }
 
     protected virtual void Update()
     {
-        if (AttackTimer >= AttackDelay.Value)
-            DoDamage(_TargetingBehaviour.Target.GetComponent<IDamageable>());
+        if(_TargetingBehaviour.Target == null)
+            return;
+        if (AttackTimer >= AttackConfig.AttackDelay.Value && InAttackRange)
+        {
+            AttackConfig.DoAttack(_TargetingBehaviour.Target);
+            AttackTimer = 0;
+        }
         AttackTimer += Time.deltaTime;
     }
 }

@@ -31,7 +31,7 @@ public class LarvaEnemyTargetBehaviour : TargetingBehaviour
 #if UNITY_EDITOR
     void OnDrawGizmos()
     {
-        if (Agent == null)
+        if (Agent == null || Target == null)
             return;
         Gizmos.color = Color.red;
         var raise = new Vector3(0, 1, 0);
