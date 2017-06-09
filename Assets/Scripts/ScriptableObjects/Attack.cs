@@ -29,10 +29,12 @@ public class Attack : ScriptableObject, IDamager
         DoDamage(target.GetComponent<IDamageable>());
     }
 
+    [System.Serializable]
     public class EventAttackStarted : UnityEvent<GameObject>
     {
     }
 
+    [System.Serializable]
     public class EventAttackComplete : UnityEvent<GameObject>
     {
     }

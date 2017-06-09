@@ -6,7 +6,7 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "", menuName = "Attack/LarvaAttack")]
 public class LarvaEnemyAttack : Attack
 {
-    public void DoAttack(GameObject target)
+    public override void DoAttack(GameObject target)
     {
         base.DoAttack(target);
         Debug.Log("I'm Attacking");
